@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "OwzKiE/vl3U/6oq0Spg87udYTedh9ayidkqWqIC33Lm72b+z23ktUycPhlj90JMd1yaVd28cm2DT/jT5qADnkw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Francis T Addo\\source\\repos\\EagleEyeTest\\EagleEyeTest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Francis T Addo\\.nuget\\packages\\lumenworkscsvreader\\4.0.0\\lumenworkscsvreader.4.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
