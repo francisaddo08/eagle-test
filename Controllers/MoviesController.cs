@@ -86,7 +86,7 @@ namespace EagleEyeTest.Controllers
             }
             //============================================END OF METADATA DICTIONARY============================
             foreach (KeyValuePair<int, long> keyValuePair in movieIdTotalWatchDictionary)
-            {
+            { }
                
                 foreach (KeyValuePair<int, int> keyValue in movieIdNumberOfWatchDictionary)
                 {
@@ -99,7 +99,7 @@ namespace EagleEyeTest.Controllers
                         model.title = movieIdToMovieModelDictionary[keyValue.Key].title; //METADATA 
                         model.releaseYear = movieIdToMovieModelDictionary[keyValue.Key].releaseYear;
                     }
-                    model.averageWatchDurationS = keyValuePair.Value / keyValue.Value;
+                    model.averageWatchDurationS = movieIdTotalWatchDictionary[keyValue.Key] / keyValue.Value;
                     model.watches = keyValue.Value;
 
 
@@ -107,7 +107,7 @@ namespace EagleEyeTest.Controllers
                     statsModelsList.Add(model);
                    
 
-                }
+                
               
 
             }
