@@ -55,18 +55,43 @@ namespace EagleEyeTest.Controllers
                 return BadRequest(StatusCode(400, "No data posted for your request"));
                 }
                 List<MetadataEntity> sorted = metadataById.OrderByDescending(s => s.Id).ToList();
-            List<MetadataModel> metadataModelsListFilterByLanguage = new List<MetadataModel>();
-            for (int i = 0; i < sorted.Count; i++)
-            {
-                if (sorted.ElementAt(i).language == sorted.ElementAt(i + 1).language)
-                {
+            List<MetadataEntity> filtedByLanguage = new List<MetadataEntity>();
 
+            Dictionary<int, MetadataEntity> filterForLanguageDictionary = new Dictionary<int, MetadataEntity>();
+            foreach(MetadataEntity metadataEntity in sorted)
+            {
+                List<MetadataEntity> metadataByLanguageList = sorted.Where(O => O.language == metadataEntity.language).ToList();
+                MetadataEntity outPutData = metadataByLanguageList.OrderByDescending(d => d.Id).Take(1).FirstOrDefault();
+                if (!filtedByLanguage.Contains(outPutData))
+                {
+                    filtedByLanguage.Add(outPutData);
                 }
+                
+                //if (filterForLanguageDictionary.ContainsKey(metadataEntity.movieId))
+                //{
+                //    MetadataEntity currentDictionaryValue = filterForLanguageDictionary[metadataEntity.movieId];
+                //    if (currentDictionaryValue.language.Contains(metadataEntity.language))
+                //    {
+                //        MetadataEntity entity = currentDictionaryValue.Id > metadataEntity.Id ? currentDictionaryValue : metadataEntity;
+
+                //    }
+
+                   
+                //}
+                //else
+                //{
+                //    //MovieModel movieModel = new MovieModel();
+                //    //movieModel.title = entity.title;
+                //    //movieModel.releaseYear = entity.releaseYear;
+                //    //movieModel.noOfRelases = 1;
+                //    //movieIdToMovieModelDictionary.Add(entity.movieId, movieModel);
+
+                //}
             }
 
             List<MetadataModel> metadataModelsList = new List<MetadataModel>();
             
-             foreach(MetadataEntity entity in sorted)
+             foreach(MetadataEntity entity in filtedByLanguage)
             {
                 MetadataModel model = new MetadataModel();
                 model.movieId = entity.movieId;

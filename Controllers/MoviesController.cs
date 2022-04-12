@@ -85,8 +85,7 @@ namespace EagleEyeTest.Controllers
                 }
             }
             //============================================END OF METADATA DICTIONARY============================
-            foreach (KeyValuePair<int, long> keyValuePair in movieIdTotalWatchDictionary)
-            { }
+           
                
                 foreach (KeyValuePair<int, int> keyValue in movieIdNumberOfWatchDictionary)
                 {
