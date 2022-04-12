@@ -120,7 +120,10 @@ namespace EagleEyeTest.Controllers
                     completeDataModelsOnly.Add(completeModel);
                 }
             }
-            return new JsonResult(completeDataModelsOnly);
+            List<StatsModel> sorted = completeDataModelsOnly.OrderByDescending(sm => sm.watches )
+                .ThenByDescending(m => m.releaseYear)
+                .ToList();
+            return new JsonResult(sorted);
         }
     }
 }

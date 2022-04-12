@@ -26,12 +26,12 @@ namespace EagleEyeTest.Controllers
         }
 
         // GET: api/<MetadataController>
-        [HttpGet]
-        public IActionResult Get()
-        {
+        //[HttpGet]
+        //public IActionResult Get()
+        //{
 
-            return new JsonResult(_metadataEntities);
-        }
+        //    return new JsonResult(_metadataEntities);
+        //}
 
         // GET api/<MetadataController>/5
         [HttpGet("{id}")]
@@ -54,8 +54,17 @@ namespace EagleEyeTest.Controllers
                 {
                 return BadRequest(StatusCode(400, "No data posted for your request"));
                 }
-                List<MetadataEntity> sorted = metadataById.OrderByDescending(s => s.Id).Take(1).ToList();
-            List<MetadataModel> metadataModels = new List<MetadataModel>();
+                List<MetadataEntity> sorted = metadataById.OrderByDescending(s => s.Id).ToList();
+            List<MetadataModel> metadataModelsListFilterByLanguage = new List<MetadataModel>();
+            for (int i = 0; i < sorted.Count; i++)
+            {
+                if (sorted.ElementAt(i).language == sorted.ElementAt(i + 1).language)
+                {
+
+                }
+            }
+
+            List<MetadataModel> metadataModelsList = new List<MetadataModel>();
             
              foreach(MetadataEntity entity in sorted)
             {
@@ -66,10 +75,10 @@ namespace EagleEyeTest.Controllers
                 model.duration = entity.duration;
                 model.releaseYear = entity.releaseYear;
 
-                metadataModels.Add(model);
+                metadataModelsList.Add(model);
             }
-
-                return new JsonResult(metadataModels);
+          
+            return new JsonResult(metadataModelsList);
             
            
 
